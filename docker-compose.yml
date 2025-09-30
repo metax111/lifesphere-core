@@ -1,0 +1,102 @@
+version: "3.8"
+
+services:
+  api-gateway:
+    build: ./core/api-gateway
+    ports:
+      - "8080:4000"
+    depends_on:
+      - auth-service
+      - user-service
+      - health-service
+      - life-os-service
+      - cognitive-service
+      - recommendation-service
+      - finance-service
+      - learning-service
+      - worklife-service
+      - relationship-service
+      - health-ai-service
+      - notification-service
+      - logging-service
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  auth-service:
+    build: ./core/auth-service
+    ports:
+      - "4001:4001"
+    restart: unless-stopped
+
+  user-service:
+    build: ./core/user-service
+    ports:
+      - "4002:4002"
+    restart: unless-stopped
+
+  health-service:
+    build: ./core/health-service
+    ports:
+      - "4003:4003"
+    restart: unless-stopped
+
+  life-os-service:
+    build: ./core/life-os-service
+    ports:
+      - "4004:4004"
+    restart: unless-stopped
+
+  cognitive-service:
+    build: specialized/cognitive_service
+    ports:
+      - "4007:4007"
+    restart: unless-stopped
+
+  recommendation-service:
+    build: ./specialized/recommendation-service
+    ports:
+      - "4101:4101"
+    restart: unless-stopped
+
+  finance-service:
+    build: ./specialized/finance-service
+    ports:
+      - "4102:4102"
+    restart: unless-stopped
+
+  learning-service:
+    build: ./specialized/learning-service
+    ports:
+      - "4103:4103"
+    restart: unless-stopped
+
+  worklife-service:
+    build: ./specialized/worklife-service
+    ports:
+      - "4104:4104"
+    restart: unless-stopped
+
+  relationship-service:
+    build: ./specialized/relationship-service
+    ports:
+      - "4105:4105"
+    restart: unless-stopped
+
+  health-ai-service:
+    build: ./specialized/health-ai-service
+    ports:
+      - "4106:4106"
+    restart: unless-stopped
+
+  notification-service:
+    build: ./utility/notification-service
+    ports:
+      - "4006:4006"
+    restart: unless-stopped
+
+  logging-service:
+    build: ./utility/logging-service
+    ports:
+      - "4005:4005"
+    restart: unless-stopped
