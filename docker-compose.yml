@@ -19,6 +19,21 @@ services:
       - health-ai-service
       - notification-service
       - logging-service
+      - marketplace-service
+      - social_feed-service
+      - video_streaming-service
+      - chat_messaging-service
+      - gaming-service
+      - content_hub-service
+      - events_ticketing-service
+      - travel_location-service
+      - ar_ai_experience-service
+      - groups_community-service
+      - influencer_creator-service
+      - social_commerce-service
+      - viral_engagement-service
+      - multimedia-service
+      - rtc-service
     restart: unless-stopped
     environment:
       - PYTHONUNBUFFERED=1
@@ -48,7 +63,7 @@ services:
     restart: unless-stopped
 
   cognitive-service:
-    build: specialized/cognitive_service
+    build: ./specialized/cognitive_service
     ports:
       - "4007:4007"
     restart: unless-stopped
@@ -99,4 +114,95 @@ services:
     build: ./utility/logging-service
     ports:
       - "4005:4005"
+    restart: unless-stopped
+
+  # New specialized services
+  marketplace-service:
+    build: ./specialized/marketplace
+    ports:
+      - "4200:8000"
+    restart: unless-stopped
+
+  social_feed-service:
+    build: ./specialized/social_feed
+    ports:
+      - "4201:8000"
+    restart: unless-stopped
+
+  video_streaming-service:
+    build: ./specialized/video_streaming
+    ports:
+      - "4202:8000"
+    restart: unless-stopped
+
+  chat_messaging-service:
+    build: ./specialized/chat_messaging
+    ports:
+      - "4203:8000"
+    restart: unless-stopped
+
+  gaming-service:
+    build: ./specialized/gaming
+    ports:
+      - "4204:8000"
+    restart: unless-stopped
+
+  content_hub-service:
+    build: ./specialized/content_hub
+    ports:
+      - "4205:8000"
+    restart: unless-stopped
+
+  events_ticketing-service:
+    build: ./specialized/events_ticketing
+    ports:
+      - "4206:8000"
+    restart: unless-stopped
+
+  travel_location-service:
+    build: ./specialized/travel_location
+    ports:
+      - "4207:8000"
+    restart: unless-stopped
+
+  ar_ai_experience-service:
+    build: ./specialized/ar_ai_experience
+    ports:
+      - "4208:8000"
+    restart: unless-stopped
+
+  groups_community-service:
+    build: ./specialized/groups_community
+    ports:
+      - "4209:8000"
+    restart: unless-stopped
+
+  influencer_creator-service:
+    build: ./specialized/influencer_creator
+    ports:
+      - "4210:8000"
+    restart: unless-stopped
+
+  social_commerce-service:
+    build: ./specialized/social_commerce
+    ports:
+      - "4211:8000"
+    restart: unless-stopped
+
+  viral_engagement-service:
+    build: ./specialized/viral_engagement
+    ports:
+      - "4212:8000"
+    restart: unless-stopped
+
+  multimedia-service:
+    build: ./specialized/multimedia
+    ports:
+      - "4213:8000"
+    restart: unless-stopped
+
+  rtc-service:
+    build: specialized/rtc
+    ports:
+      - "4214:8000"
     restart: unless-stopped
