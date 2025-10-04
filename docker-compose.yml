@@ -4,7 +4,7 @@ services:
   api-gateway:
     build: ./core/api-gateway
     ports:
-      - "8080:4000"
+      - "8080:${API_GATEWAY_PORT}"
     depends_on:
       - auth-service
       - user-service
@@ -35,174 +35,232 @@ services:
       - multimedia-service
       - rtc-service
     restart: unless-stopped
-    environment:
-      - PYTHONUNBUFFERED=1
+    env_file:
+      - ./.env
 
+  # ====== Core Services ======
   auth-service:
     build: ./core/auth-service
     ports:
-      - "4001:4001"
+      - "${AUTH_SERVICE_PORT}:${AUTH_SERVICE_PORT}"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   user-service:
     build: ./core/user-service
     ports:
-      - "4002:4002"
+      - "${USER_SERVICE_PORT}:${USER_SERVICE_PORT}"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   health-service:
     build: ./core/health-service
     ports:
-      - "4003:4003"
+      - "${HEALTH_SERVICE_PORT}:${HEALTH_SERVICE_PORT}"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   life-os-service:
     build: ./core/life-os-service
     ports:
-      - "4004:4004"
+      - "${LIFE_OS_SERVICE_PORT}:${LIFE_OS_SERVICE_PORT}"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
+  # ====== Specialized Services ======
   cognitive-service:
     build: ./specialized/cognitive_service
     ports:
-      - "4007:4007"
+      - "${COGNITIVE_SERVICE_PORT}:${COGNITIVE_SERVICE_PORT}"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   recommendation-service:
     build: ./specialized/recommendation-service
     ports:
-      - "4101:4101"
+      - "${RECOMMENDATION_SERVICE_PORT}:${RECOMMENDATION_SERVICE_PORT}"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   finance-service:
     build: ./specialized/finance-service
     ports:
-      - "4102:4102"
+      - "${FINANCE_SERVICE_PORT}:${FINANCE_SERVICE_PORT}"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   learning-service:
     build: ./specialized/learning-service
     ports:
-      - "4103:4103"
+      - "${LEARNING_SERVICE_PORT}:${LEARNING_SERVICE_PORT}"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   worklife-service:
     build: ./specialized/worklife-service
     ports:
-      - "4104:4104"
+      - "${WORKLIFE_SERVICE_PORT}:${WORKLIFE_SERVICE_PORT}"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   relationship-service:
     build: ./specialized/relationship-service
     ports:
-      - "4105:4105"
+      - "${RELATIONSHIP_SERVICE_PORT}:${RELATIONSHIP_SERVICE_PORT}"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   health-ai-service:
     build: ./specialized/health-ai-service
     ports:
-      - "4106:4106"
+      - "${HEALTH_AI_SERVICE_PORT}:${HEALTH_AI_SERVICE_PORT}"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
-  notification-service:
-    build: ./utility/notification-service
-    ports:
-      - "4006:4006"
-    restart: unless-stopped
-
-  logging-service:
-    build: ./utility/logging-service
-    ports:
-      - "4005:4005"
-    restart: unless-stopped
-
-  # New specialized services
   marketplace-service:
     build: ./specialized/marketplace
     ports:
-      - "4200:8000"
+      - "${MARKETPLACE_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   social_feed-service:
     build: ./specialized/social_feed
     ports:
-      - "4201:8000"
+      - "${SOCIAL_FEED_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   video_streaming-service:
     build: ./specialized/video_streaming
     ports:
-      - "4202:8000"
+      - "${VIDEO_STREAMING_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   chat_messaging-service:
     build: ./specialized/chat_messaging
     ports:
-      - "4203:8000"
+      - "${CHAT_MESSAGING_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   gaming-service:
     build: ./specialized/gaming
     ports:
-      - "4204:8000"
+      - "${GAMING_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   content_hub-service:
     build: ./specialized/content_hub
     ports:
-      - "4205:8000"
+      - "${CONTENT_HUB_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   events_ticketing-service:
     build: ./specialized/events_ticketing
     ports:
-      - "4206:8000"
+      - "${EVENTS_TICKETING_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   travel_location-service:
     build: ./specialized/travel_location
     ports:
-      - "4207:8000"
+      - "${TRAVEL_LOCATION_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   ar_ai_experience-service:
     build: ./specialized/ar_ai_experience
     ports:
-      - "4208:8000"
+      - "${AR_AI_EXPERIENCE_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   groups_community-service:
     build: ./specialized/groups_community
     ports:
-      - "4209:8000"
+      - "${GROUPS_COMMUNITY_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   influencer_creator-service:
     build: ./specialized/influencer_creator
     ports:
-      - "4210:8000"
+      - "${INFLUENCER_CREATOR_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   social_commerce-service:
     build: ./specialized/social_commerce
     ports:
-      - "4211:8000"
+      - "${SOCIAL_COMMERCE_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   viral_engagement-service:
     build: ./specialized/viral_engagement
     ports:
-      - "4212:8000"
+      - "${VIRAL_ENGAGEMENT_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   multimedia-service:
     build: ./specialized/multimedia
     ports:
-      - "4213:8000"
+      - "${MULTIMEDIA_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
 
   rtc-service:
-    build: specialized/rtc
+    build: ./specialized/rtc
     ports:
-      - "4214:8000"
+      - "${RTC_SERVICE_PORT}:8000"
     restart: unless-stopped
+    env_file:
+      - ./.env
+
+  # ====== Utility Services ======
+  logging-service:
+    build: ./utility/logging-service
+    ports:
+      - "${LOGGING_SERVICE_PORT}:${LOGGING_SERVICE_PORT}"
+    restart: unless-stopped
+    env_file:
+      - ./.env
+
+  notification-service:
+    build: ./utility/notification-service
+    ports:
+      - "${NOTIFICATION_SERVICE_PORT}:${NOTIFICATION_SERVICE_PORT}"
+    restart: unless-stopped
+    env_file:
+      - ./.env
